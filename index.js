@@ -18,7 +18,9 @@ const Pelicula = crearPeliculaModelo(sequelize);
 
 // Rutas
 app.use('/api', authRouter);
+app.use('/', authRouter);
 app.use('/api/peliculas', verificarToken, crearPeliculasRouter(sequelize, Pelicula));
+app.use('/peliculas', verificarToken, crearPeliculasRouter(sequelize, Pelicula));
 
 async function iniciarServidor() {
   try {
@@ -55,11 +57,17 @@ app.get("/", (req, res) => {
       console.log(`Servidor corriendo en http://localhost:${PORT}`);
       console.log('Método Acción Endpoint Status Exitoso');
       console.log(`POST  Login        http://localhost:${PORT}/api/login 200 OK`);
+      console.log(`POST  Login        http://localhost:${PORT}/login 200 OK`);
       console.log(`GET   Leer todos   http://localhost:${PORT}/api/peliculas 200 OK`);
       console.log(`GET   Leer uno     http://localhost:${PORT}/api/peliculas/:id 200 OK`);
       console.log(`POST  Crear        http://localhost:${PORT}/api/peliculas 201 Created`);
       console.log(`PUT   Actualizar   http://localhost:${PORT}/api/peliculas/:id 200 OK`);
       console.log(`DELETE Eliminar    http://localhost:${PORT}/api/peliculas/:id 204 No Content`);
+      console.log(`GET   Leer todos   http://localhost:${PORT}/peliculas 200 OK`);
+      console.log(`GET   Leer uno     http://localhost:${PORT}/peliculas/:id 200 OK`);
+      console.log(`POST  Crear        http://localhost:${PORT}/peliculas 201 Created`);
+      console.log(`PUT   Actualizar   http://localhost:${PORT}/peliculas/:id 200 OK`);
+      console.log(`DELETE Eliminar    http://localhost:${PORT}/peliculas/:id 204 No Content`);
     });
 
   } catch (error) {
